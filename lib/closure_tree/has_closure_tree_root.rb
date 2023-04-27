@@ -41,7 +41,7 @@ module ClosureTree
 
         # Lookup inverse belongs_to association reflection on target class.
         inverse = temp_root.class.reflections.values.detect do |r|
-          r.macro == :belongs_to && r.klass == self.class
+          r.macro == :belongs_to && !r.polymorphic? && r.klass == self.class
         end
 
         # Fetch all descendants in constant number of queries.
